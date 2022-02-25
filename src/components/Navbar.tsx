@@ -1,7 +1,14 @@
-import React, { useCallback, useEffect, useRef } from "react"
+import { useCallback, useEffect, useRef } from "react"
+import { Link } from "react-router-dom";
 import { hasClass, hexToRgb } from "../Helpers";
+import { NavHashLink } from 'react-router-hash-link';
+import { withTranslation, TFunction } from 'react-i18next';
 
-export default function Navbar() {
+interface IProps  {
+  t: TFunction<"translation", undefined>
+}
+
+function Navbar({ t } : IProps) {
 
   const navbar = useRef<HTMLElement>(null);
 
@@ -11,12 +18,12 @@ export default function Navbar() {
 
       const color = '#fff';
       const bgClassName = `bg-white`;
-  
+
       const shadowName = 'shadow-transition'
-  
+
       const colorRgbRaw = hexToRgb(color)
-      const colorRgb = colorRgbRaw === null ? [0,0,0] : colorRgbRaw;
-  
+      const colorRgb = colorRgbRaw === null ? [0, 0, 0] : colorRgbRaw;
+
       const { scrollTop } = document.documentElement;
       let alpha = (scrollTop / window.innerHeight) * 1.5;
 
@@ -33,7 +40,11 @@ export default function Navbar() {
       (alpha > 0 || hasClass(navbarCollapse, 'show')) ? navbar.current.classList.add(shadowName) : navbar.current.classList.remove(shadowName);
     }
 
-  }, [navbar.current])
+  }, [navbar.current]);
+
+  useEffect(() => {
+    scrollEventListener()
+  }, [scrollEventListener])
 
   useEffect(() => {
 
@@ -48,11 +59,11 @@ export default function Navbar() {
   return (
     <nav
       ref={navbar}
-      className="navbar navbar-expand-lg navbar-light fixed-top py-3 d-block backdrop shadow-transition"
+      className="navbar navbar-expand-lg navbar-light fixed-top py-3 d-block"
       data-navbar-on-scroll="data-navbar-on-scroll"
     >
       <div className="container">
-        <a className="navbar-brand" href="index.html">
+        <Link className="navbar-brand" to="/">
           <img
             className="d-inline-block"
             src="assets/img/gallery/logo.png"
@@ -60,7 +71,7 @@ export default function Navbar() {
             alt="logo"
           />
           <span className="fw-bold text-primary ms-2">voyage</span>
-        </a>
+        </Link>
         <button
           className="navbar-toggler collapsed"
           type="button"
@@ -78,49 +89,53 @@ export default function Navbar() {
         >
           <ul className="navbar-nav mx-auto pt-2 pt-lg-0 font-base">
             <li className="nav-item px-2">
-              <a
+              <NavHashLink
                 className="nav-link fw-medium active"
                 aria-current="page"
-                href="#places"
+                to='/#places'
               >
                 <span className="nav-link-icon text-800 me-1 fas fa-map-marker-alt" />
-                <span className="nav-link-text">Voyages</span>
-              </a>
+                <span className="nav-link-text">{t('locations')}</span>
+              </NavHashLink>
             </li>
             <li className="nav-item px-2">
-              <a className="nav-link" href="#flights">
+              <NavHashLink className="nav-link" to="/#flights">
                 {" "}
                 <span className="nav-link-icon text-800 me-1 fas fa-plane" />
-                <span className="nav-link-text">Vols</span>
-              </a>
+                <span className="nav-link-text">{t('flights')}</span>
+              </NavHashLink>
             </li>
             <li className="nav-item px-2">
-              <a className="nav-link" href="#hotels">
+              <NavHashLink className="nav-link" to="/#hotels">
                 {" "}
                 <span className="nav-link-icon text-800 me-1 fas fa-hotel" />
-                <span className="nav-link-text">Hôtels</span>
-              </a>
+                <span className="nav-link-text">{t('hotels')}</span>
+              </NavHashLink>
             </li>
             <li className="nav-item px-2">
-              <a className="nav-link" href="#activities">
+              <NavHashLink className="nav-link" to="/#activities">
                 <span className="nav-link-icon text-800 me-1 fas fa-bolt" />
-                <span className="nav-link-text">Activités</span>
-              </a>
+                <span className="nav-link-text">{t('activities')}</span>
+              </NavHashLink>
             </li>
           </ul>
           <form>
-            <button
-              className="btn text-800 order-1 order-lg-0 me-2"
-              type="button"
-            >
-              Support
-            </button>
-            <button className="btn btn-voyage-outline order-0" type="submit">
-              <span className="text-primary">Sign in</span>
-            </button>
+            <button className="btn text-800 order-1 order-lg-0 me-2" type="button">{t('need_help')}</button>
+            <Link to="/register">
+              <button className="btn btn-voyage-outline order-0" type="button">
+                <span className="text-primary">{t('register')}</span>
+              </button>
+            </Link>
+            <Link to="/login">
+              <button className="btn btn-voyage-outline order-0" type="button">
+                <span className="text-primary">{t('login')}</span>
+              </button>
+            </Link>
           </form>
         </div>
       </div>
     </nav>
   )
 }
+
+export default withTranslation('navbar')(Navbar);
