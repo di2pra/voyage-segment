@@ -6,6 +6,7 @@ export type IFlashDeal = {
   originalPrice: string;
   discountedPrice: string;
   discountPercentage: string;
+  isTrending: boolean;
 }
 
 export type ICarrousselItem = {

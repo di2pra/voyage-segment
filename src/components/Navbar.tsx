@@ -121,16 +121,16 @@ function Navbar({ t } : IProps) {
           </ul>
           <form>
             <button className="btn text-800 order-1 order-lg-0 me-2" type="button">{t('need_help')}</button>
-            <Link to="/register">
+            <NavHashLink to="/register#register">
               <button className="btn btn-voyage-outline order-0" type="button">
                 <span className="text-primary">{t('register')}</span>
               </button>
-            </Link>
-            <Link to="/login">
+            </NavHashLink>
+            <NavHashLink to="/login#login">
               <button className="btn btn-voyage-outline order-0" type="button">
                 <span className="text-primary">{t('login')}</span>
               </button>
-            </Link>
+            </NavHashLink>
           </form>
         </div>
       </div>

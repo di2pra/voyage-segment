@@ -41,18 +41,18 @@ function Footer({ t } : IProps) {
             <div className="p-3 py-7 p-md-7">
               <p className="text-light">
                 <i className="fas fa-phone-alt me-3" />
-                <span className="text-light">+3930219390</span>
+                <span className="text-light">{t('+1-764-456-4595')}</span>
               </p>
               <p className="text-light">
                 <i className="fas fa-envelope me-3" />
-                <span className="text-light">something@gmail.com</span>
+                <span className="text-light">{t('support@voyage.com')}</span>
               </p>
               <p className="text-light">
                 <i className="fas fa-map-marker-alt me-3" />
                 <span className="text-light lh-lg">
-                  333, Lorem Street, Albania, Alifornia
+                  {t('23 fleet st, Boston, MA')}
                   <br />
-                  United States of America
+                  {t('United States of America')}
                 </span>
               </p>
               <div className="mt-6">

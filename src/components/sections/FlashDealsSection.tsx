@@ -6,72 +6,78 @@ interface IProps {
   t: TFunction<"translation", undefined>
 }
 
-const items: ICarrousselItem[] = [
-  {
-    cards: [
-      {
-        title: "Mermaid Beach Resort: The most joyful way to spend your holiday",
-        imgUrl: "assets/img/gallery/maldives.png",
-        location: "Maldives",
-        duration: "4 jours",
-        originalPrice: "200 €",
-        discountedPrice: "150 €",
-        discountPercentage: "25%"
-      },
-      {
-        title: "Bora Bora: Enjoy a romantic cruise tour of at the sunny side of life",
-        imgUrl: "assets/img/gallery/cinnamon.png",
-        location: "Singapour",
-        duration: "5 jours",
-        originalPrice: "500 €",
-        discountedPrice: "450 €",
-        discountPercentage: "10%"
-      },
-      {
-        title: "Fihalhohi Island Resort: Luxury destination without compromise",
-        imgUrl: "assets/img/gallery/dhigu.png",
-        location: "Maldives",
-        duration: "7 jours",
-        originalPrice: "700 €",
-        discountedPrice: "630 €",
-        discountPercentage: "10%"
-      }
-    ]
-  },
-  {
-    cards: [
-      {
-        title: "Mermaid Beach Resort: The most joyful way to spend your holiday",
-        imgUrl: "assets/img/gallery/maldives.png",
-        location: "Sénégal",
-        duration: "4 jours",
-        originalPrice: "200 €",
-        discountedPrice: "150 €",
-        discountPercentage: "25%"
-      },
-      {
-        title: "Bora Bora: Enjoy a romantic cruise tour of at the sunny side of life",
-        imgUrl: "assets/img/gallery/cinnamon.png",
-        location: "Singapour",
-        duration: "5 jours",
-        originalPrice: "500 €",
-        discountedPrice: "450 €",
-        discountPercentage: "10%"
-      },
-      {
-        title: "Fihalhohi Island Resort: Luxury destination without compromise",
-        imgUrl: "assets/img/gallery/dhigu.png",
-        location: "Maldives",
-        duration: "7 jours",
-        originalPrice: "700 €",
-        discountedPrice: "630 €",
-        discountPercentage: "10%"
-      }
-    ]
-  }
-]
-
 function FlashDealsSection({ t }: IProps) {
+
+  const items: ICarrousselItem[] = [
+    {
+      cards: [
+        {
+          title: "Mermaid Beach Resort: The most joyful way to spend your holiday",
+          imgUrl: "assets/img/gallery/maldives.png",
+          location: "Maldives",
+          duration: "4 jours",
+          originalPrice: t('priceWithCurrency', { val: 200}),
+          discountedPrice: t('priceWithCurrency', { val: 150}),
+          discountPercentage: "25%",
+          isTrending: true
+        },
+        {
+          title: "Bora Bora: Enjoy a romantic cruise tour of at the sunny side of life",
+          imgUrl: "assets/img/gallery/cinnamon.png",
+          location: "Singapour",
+          duration: "5 jours",
+          originalPrice: t('priceWithCurrency', { val: 500}),
+          discountedPrice: t('priceWithCurrency', { val: 450}),
+          discountPercentage: "10%",
+          isTrending: true
+        },
+        {
+          title: "Fihalhohi Island Resort: Luxury destination without compromise",
+          imgUrl: "assets/img/gallery/dhigu.png",
+          location: "Maldives",
+          duration: "7 jours",
+          originalPrice: t('priceWithCurrency', { val: 700}),
+          discountedPrice: t('priceWithCurrency', { val: 630}),
+          discountPercentage: "10%",
+          isTrending: false
+        }
+      ]
+    },
+    {
+      cards: [
+        {
+          title: "Mermaid Beach Resort: The most joyful way to spend your holiday",
+          imgUrl: "assets/img/gallery/maldives.png",
+          location: "Sénégal",
+          duration: "4 jours",
+          originalPrice: t('priceWithCurrency', { val: 200}),
+          discountedPrice: t('priceWithCurrency', { val: 150}),
+          discountPercentage: "25%",
+          isTrending: true
+        },
+        {
+          title: "Bora Bora: Enjoy a romantic cruise tour of at the sunny side of life",
+          imgUrl: "assets/img/gallery/cinnamon.png",
+          location: "Singapour",
+          duration: "5 jours",
+          originalPrice: t('priceWithCurrency', { val: 500}),
+          discountedPrice: t('priceWithCurrency', { val: 450}),
+          discountPercentage: "10%",
+          isTrending: true
+        },
+        {
+          title: "Fihalhohi Island Resort: Luxury destination without compromise",
+          imgUrl: "assets/img/gallery/dhigu.png",
+          location: "Maldives",
+          duration: "7 jours",
+          originalPrice: t('priceWithCurrency', { val: 700}),
+          discountedPrice: t('priceWithCurrency', { val: 630}),
+          discountPercentage: "10%",
+          isTrending: true
+        }
+      ]
+    }
+  ];
 
   const [selectedCarousel, setSelectedCarousel] = useState<number>(0);
 
@@ -109,13 +115,11 @@ function FlashDealsSection({ t }: IProps) {
                                     <div className="card-img-overlay ps-0">
                                       <span className="badge bg-primary ms-3 me-1 p-2">
                                         <i className="fas fa-clock me-1" />
-                                        <span>20:04:32:21</span>
+                                        <span>20:04:32</span>
                                       </span>
-                                      <span className="badge bg-secondary p-2">
-                                        <i className="fas fa-bolt me-1" />
-                                        <span>trending</span>
-                                        <i className="fas fa-bolt ms-1"> </i>
-                                      </span>
+                                      {
+                                        card.isTrending ? <span className="badge bg-secondary p-2"><i className="fas fa-bolt me-1" /><span>{t("Trending")}</span></span> : ''
+                                      }
                                     </div>
                                     <div className="card-body ps-0">
                                       <h5 className="fw-bold text-1000 mb-2">{card.title}</h5>
