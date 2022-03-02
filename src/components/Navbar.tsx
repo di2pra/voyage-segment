@@ -1,14 +1,18 @@
-import { useCallback, useEffect, useRef } from "react"
+import { useCallback, useContext, useEffect, useRef } from "react"
 import { Link } from "react-router-dom";
 import { hasClass, hexToRgb } from "../Helpers";
 import { NavHashLink } from 'react-router-hash-link';
 import { withTranslation, TFunction } from 'react-i18next';
+import { UserContext } from "../providers/UserProvider";
+import { IUser } from "../Types";
 
-interface IProps  {
+interface IProps {
   t: TFunction<"translation", undefined>
 }
 
-function Navbar({ t } : IProps) {
+function Navbar({ t }: IProps) {
+
+  const { user, updateUser } = useContext(UserContext);
 
   const navbar = useRef<HTMLElement>(null);
 
@@ -36,7 +40,6 @@ function Navbar({ t } : IProps) {
 
       alpha >= 1 && (alpha = 1);
       navbar.current.style.backgroundColor = `rgba(${colorRgb[0]}, ${colorRgb[1]}, ${colorRgb[2]}, ${alpha})`;
-      //navbar.style.backgroundImage = (alpha > 0 || utils.hasClass(navbarCollapse, 'show')) ? backgroundImage : 'none';
       (alpha > 0 || hasClass(navbarCollapse, 'show')) ? navbar.current.classList.add(shadowName) : navbar.current.classList.remove(shadowName);
     }
 
@@ -56,14 +59,24 @@ function Navbar({ t } : IProps) {
 
   }, [scrollEventListener]);
 
+  const logOut = useCallback(() => {
+
+    if (updateUser) {
+      window.analytics.reset();
+      updateUser(null);
+    }
+
+
+  }, [updateUser])
+
   return (
     <nav
       ref={navbar}
       className="navbar navbar-expand-lg navbar-light fixed-top py-3 d-block"
       data-navbar-on-scroll="data-navbar-on-scroll"
     >
-      <div className="container">
-        <Link className="navbar-brand" to="/">
+      <div className="container-fluid">
+        <NavHashLink className="navbar-brand" to="/#home">
           <img
             className="d-inline-block"
             src="assets/img/gallery/logo.png"
@@ -71,7 +84,7 @@ function Navbar({ t } : IProps) {
             alt="logo"
           />
           <span className="fw-bold text-primary ms-2">voyage</span>
-        </Link>
+        </NavHashLink>
         <button
           className="navbar-toggler collapsed"
           type="button"
@@ -121,20 +134,45 @@ function Navbar({ t } : IProps) {
           </ul>
           <form>
             <button className="btn text-800 order-1 order-lg-0 me-2" type="button">{t('need_help')}</button>
-            <NavHashLink to="/register#register">
-              <button className="btn btn-voyage-outline order-0" type="button">
-                <span className="text-primary">{t('register')}</span>
-              </button>
-            </NavHashLink>
-            <NavHashLink to="/login#login">
-              <button className="btn btn-voyage-outline order-0" type="button">
-                <span className="text-primary">{t('login')}</span>
-              </button>
-            </NavHashLink>
+            {user === null ? <LoggedOut t={t} /> : <LoggedIn user={user} t={t} logOut={logOut} />}
           </form>
         </div>
       </div>
     </nav>
+  )
+}
+
+interface ILoggedIn extends IProps {
+  logOut: () => void,
+  user: IUser
+}
+
+function LoggedIn({ t, logOut, user }: ILoggedIn) {
+  return (
+    <>
+      <button className="btn order-1 order-lg-0 me-2" type="button" style={{'color': '#FE7A15'}}>{user.firstName} {user.lastName}</button>
+      <button className="btn btn-voyage-outline order-0" type="button" onClick={() => { logOut() }}>
+        <span className="text-primary">{t('Log out')}</span>
+      </button>
+    </>
+
+  )
+}
+
+function LoggedOut({ t }: IProps) {
+  return (
+    <>
+      <NavHashLink to="/register#register">
+        <button className="btn btn-voyage-outline order-0" type="button">
+          <span className="text-primary">{t('register')}</span>
+        </button>
+      </NavHashLink>
+      <NavHashLink to="/login#login">
+        <button className="btn btn-voyage-outline order-0" type="button">
+          <span className="text-primary">{t('login')}</span>
+        </button>
+      </NavHashLink>
+    </>
   )
 }
 

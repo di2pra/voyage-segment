@@ -12,3 +12,11 @@ export type IFlashDeal = {
 export type ICarrousselItem = {
   cards: IFlashDeal[]
 }
+
+export type IUser = {
+  username: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+}

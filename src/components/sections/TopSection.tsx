@@ -18,7 +18,7 @@ function TopSection({ t }: IProps) {
 
   return (
     <>
-      <section className="mt-7 py-0">
+      <section className="mt-7 py-0" id="home">
         <div
           className="bg-holder w-50 bg-right d-none d-lg-block"
           style={{ backgroundImage: "url(assets/img/gallery/hero-section-1.png)" }}

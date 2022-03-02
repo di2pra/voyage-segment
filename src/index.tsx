@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import i18n from "i18next";
-import {  initReactI18next } from "react-i18next";
+import { initReactI18next } from "react-i18next";
+import UserProvider from './providers/UserProvider';
 
 const resources = {
   en: {
@@ -14,27 +15,28 @@ const resources = {
       "activities": "Activities",
       "need_help": "Need Help ?",
       "login": "Login",
-      "register": "Register"
+      "register": "Register",
+      "Log out": "Log out"
     },
     topSection: {
-      "Let’s make a tour" : "Let’s make a tour",
-      "Discover the beauty" : "Discover the beauty",
-      "From Where" : "From Where",
-      "From To" : "From To",
+      "Let’s make a tour": "Let’s make a tour",
+      "Discover the beauty": "Discover the beauty",
+      "From Where": "From Where",
+      "From To": "From To",
       "Adult": "Adult",
       "Adults": "Adults",
       "Search Packages": "Search Packages",
       "Search Flights": "Search Flights",
       "Search Hotels": "Search Hotels",
       "Visit the greatest places": "Visit the greatest places",
-      "Make your own plans" : "Make your own plans",
+      "Make your own plans": "Make your own plans",
       "Save 50% on your next trip": "Save 50% on your next trip"
     },
     flashDealsSection: {
       "Flash Deals": "Flash Deals",
-      "Per person" : "Per person",
+      "Per person": "Per person",
       "priceWithCurrency": "{{val, currency(USD)}}",
-      "Trending" : "Trending"
+      "Trending": "Trending"
     },
     placeSection: {
       "Popular places": "Popular places",
@@ -90,27 +92,28 @@ const resources = {
       "activities": "Activités",
       "need_help": "Besoin d'aide ?",
       "login": "Se connecter",
-      "register": "S'inscrire"
+      "register": "S'inscrire",
+      "Log out": "Se déconnecter"
     },
     topSection: {
-      "Let’s make a tour" : "Rêvez de vos",
-      "Discover the beauty" : "futures aventures",
-      "From Where" : "Départ",
-      "From To" : "Destination",
+      "Let’s make a tour": "Rêvez de vos",
+      "Discover the beauty": "futures aventures",
+      "From Where": "Départ",
+      "From To": "Destination",
       "Adult": "personne",
       "Adults": "personnes",
       "Search Packages": "Rechercher un séjour",
       "Search Flights": "Rechercher un vol",
       "Search Hotels": "Rechercher un hôtel",
       "Visit the greatest places": "Visitez les meilleurs endroits au monde",
-      "Make your own plans" : "Personnalisez vos séjours",
+      "Make your own plans": "Personnalisez vos séjours",
       "Save 50% on your next trip": "Economisez jusqu'à 50% pour vos prochains voyages"
     },
     flashDealsSection: {
       "Flash Deals": "Vente Flash",
-      "Per person" : "Par personne",
+      "Per person": "Par personne",
       "priceWithCurrency": "{{val, currency(EUR)}}",
-      "Trending" : "En tendance"
+      "Trending": "En tendance"
     },
     placeSection: {
       "Popular places": "Idées Voyages",
@@ -174,9 +177,11 @@ i18n
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <UserProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </UserProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,6 +1,7 @@
 import { ICarrousselItem } from "../../Types"
 import { withTranslation, TFunction } from 'react-i18next';
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 interface IProps {
   t: TFunction<"translation", undefined>
@@ -16,8 +17,8 @@ function FlashDealsSection({ t }: IProps) {
           imgUrl: "assets/img/gallery/maldives.png",
           location: "Maldives",
           duration: "4 jours",
-          originalPrice: t('priceWithCurrency', { val: 200}),
-          discountedPrice: t('priceWithCurrency', { val: 150}),
+          originalPrice: t('priceWithCurrency', { val: 200 }),
+          discountedPrice: t('priceWithCurrency', { val: 150 }),
           discountPercentage: "25%",
           isTrending: true
         },
@@ -26,8 +27,8 @@ function FlashDealsSection({ t }: IProps) {
           imgUrl: "assets/img/gallery/cinnamon.png",
           location: "Singapour",
           duration: "5 jours",
-          originalPrice: t('priceWithCurrency', { val: 500}),
-          discountedPrice: t('priceWithCurrency', { val: 450}),
+          originalPrice: t('priceWithCurrency', { val: 500 }),
+          discountedPrice: t('priceWithCurrency', { val: 450 }),
           discountPercentage: "10%",
           isTrending: true
         },
@@ -36,8 +37,8 @@ function FlashDealsSection({ t }: IProps) {
           imgUrl: "assets/img/gallery/dhigu.png",
           location: "Maldives",
           duration: "7 jours",
-          originalPrice: t('priceWithCurrency', { val: 700}),
-          discountedPrice: t('priceWithCurrency', { val: 630}),
+          originalPrice: t('priceWithCurrency', { val: 700 }),
+          discountedPrice: t('priceWithCurrency', { val: 630 }),
           discountPercentage: "10%",
           isTrending: false
         }
@@ -50,8 +51,8 @@ function FlashDealsSection({ t }: IProps) {
           imgUrl: "assets/img/gallery/maldives.png",
           location: "Sénégal",
           duration: "4 jours",
-          originalPrice: t('priceWithCurrency', { val: 200}),
-          discountedPrice: t('priceWithCurrency', { val: 150}),
+          originalPrice: t('priceWithCurrency', { val: 200 }),
+          discountedPrice: t('priceWithCurrency', { val: 150 }),
           discountPercentage: "25%",
           isTrending: true
         },
@@ -60,8 +61,8 @@ function FlashDealsSection({ t }: IProps) {
           imgUrl: "assets/img/gallery/cinnamon.png",
           location: "Singapour",
           duration: "5 jours",
-          originalPrice: t('priceWithCurrency', { val: 500}),
-          discountedPrice: t('priceWithCurrency', { val: 450}),
+          originalPrice: t('priceWithCurrency', { val: 500 }),
+          discountedPrice: t('priceWithCurrency', { val: 450 }),
           discountPercentage: "10%",
           isTrending: true
         },
@@ -70,8 +71,8 @@ function FlashDealsSection({ t }: IProps) {
           imgUrl: "assets/img/gallery/dhigu.png",
           location: "Maldives",
           duration: "7 jours",
-          originalPrice: t('priceWithCurrency', { val: 700}),
-          discountedPrice: t('priceWithCurrency', { val: 630}),
+          originalPrice: t('priceWithCurrency', { val: 700 }),
+          discountedPrice: t('priceWithCurrency', { val: 630 }),
           discountPercentage: "10%",
           isTrending: true
         }
@@ -100,56 +101,58 @@ function FlashDealsSection({ t }: IProps) {
                 {
                   items.map((item, index) => {
                     return (
-                      <div key={index} className={`carousel-item ${selectedCarousel === index ? 'active' : ''}`} >
-                        <div className="row h-100 align-items-center g-2">
-                          {
-                            item.cards.map(card => {
-                              return (
-                                <div className="col-md-4 mb-3 mb-md-0 h-100">
-                                  <div className="card card-span h-100 text-white">
-                                    <img
-                                      className="img-fluid h-100"
-                                      src={card.imgUrl}
-                                      alt="..."
-                                    />
-                                    <div className="card-img-overlay ps-0">
-                                      <span className="badge bg-primary ms-3 me-1 p-2">
-                                        <i className="fas fa-clock me-1" />
-                                        <span>20:04:32</span>
-                                      </span>
-                                      {
-                                        card.isTrending ? <span className="badge bg-secondary p-2"><i className="fas fa-bolt me-1" /><span>{t("Trending")}</span></span> : ''
-                                      }
-                                    </div>
-                                    <div className="card-body ps-0">
-                                      <h5 className="fw-bold text-1000 mb-2">{card.title}</h5>
-                                      <div className="d-flex align-items-center justify-content-start">
-                                        <span className="text-800 fs--1 me-2">
-                                          <i className="fas fa-map-marker-alt" />
+                      <Link key={index} to="/flash-deals/maldives">
+                        <div className={`carousel-item ${selectedCarousel === index ? 'active' : ''}`} >
+                          <div className="row h-100 align-items-center g-2">
+                            {
+                              item.cards.map((card, cardIndex) => {
+                                return (
+                                  <div key={cardIndex} className="col-md-4 mb-3 mb-md-0 h-100">
+                                    <div className="card card-span h-100 text-white">
+                                      <img
+                                        className="img-fluid h-100"
+                                        src={card.imgUrl}
+                                        alt="..."
+                                      />
+                                      <div className="card-img-overlay ps-0">
+                                        <span className="badge bg-primary ms-3 me-1 p-2">
+                                          <i className="fas fa-clock me-1" />
+                                          <span>20:04:32</span>
                                         </span>
-                                        <span className="text-900 me-3">{card.location}</span>
-                                        <span className="text-800 fs--1 me-2">
-                                          <i className="fas fa-calendar" />
-                                        </span>
-                                        <span className="text-900">{card.duration}</span>
+                                        {
+                                          card.isTrending ? <span className="badge bg-secondary p-2"><i className="fas fa-bolt me-1" /><span>{t("Trending")}</span></span> : ''
+                                        }
                                       </div>
-                                      <p className="text-decoration-line-through text-900 mt-3 mb-0">{card.originalPrice}</p>
-                                      <h1 className="mb-3 text-primary fw-bolder fs-4">
-                                        <span>{card.discountedPrice}</span>
-                                        <span className="text-900 fs--1 fw-normal"> / {t('Per person')}</span>
-                                      </h1>
-                                      <span className="badge bg-soft-secondary p-2">
-                                        <i className="fas fa-tag text-secondary fs--1 me-1" />
-                                        <span className="text-secondary fw-normal fs-1">{card.discountPercentage}</span>
-                                      </span>
+                                      <div className="card-body ps-0">
+                                        <h5 className="fw-bold text-1000 mb-2">{card.title}</h5>
+                                        <div className="d-flex align-items-center justify-content-start">
+                                          <span className="text-800 fs--1 me-2">
+                                            <i className="fas fa-map-marker-alt" />
+                                          </span>
+                                          <span className="text-900 me-3">{card.location}</span>
+                                          <span className="text-800 fs--1 me-2">
+                                            <i className="fas fa-calendar" />
+                                          </span>
+                                          <span className="text-900">{card.duration}</span>
+                                        </div>
+                                        <p className="text-decoration-line-through text-900 mt-3 mb-0">{card.originalPrice}</p>
+                                        <h1 className="mb-3 text-primary fw-bolder fs-4">
+                                          <span>{card.discountedPrice}</span>
+                                          <span className="text-900 fs--1 fw-normal"> / {t('Per person')}</span>
+                                        </h1>
+                                        <span className="badge bg-soft-secondary p-2">
+                                          <i className="fas fa-tag text-secondary fs--1 me-1" />
+                                          <span className="text-secondary fw-normal fs-1">{card.discountPercentage}</span>
+                                        </span>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                              )
-                            })
-                          }
+                                )
+                              })
+                            }
+                          </div>
                         </div>
-                      </div>
+                      </Link>
                     )
                   })
                 }
@@ -188,7 +191,7 @@ function FlashDealsSection({ t }: IProps) {
                             key={index}
                             className={selectedCarousel === index ? 'active' : ''}
                             data-bs-target="#carouselTestimonials"
-                            onClick={() => { setSelectedCarousel(index)}}
+                            onClick={() => { setSelectedCarousel(index) }}
                           />
                         )
                       })
