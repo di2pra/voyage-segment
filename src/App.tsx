@@ -1,4 +1,3 @@
-import { Sign } from 'crypto';
 import { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
@@ -20,8 +19,8 @@ function App() {
 
   useEffect(() => {
     window.analytics.page();
+    window.scrollTo(0, 0);
   }, [location]);
-
 
   return (
     <Routes>
@@ -29,7 +28,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/register" element={<SignUp />} />
         <Route path="/login" element={<SignIn />} />
-        <Route path="/flash-deals/maldives" element={<FlashDeal />} />
+        <Route path="/flash-deals/:nameUrl" element={<FlashDeal />} />
       </Route>
     </Routes>
   );

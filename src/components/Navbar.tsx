@@ -62,7 +62,7 @@ function Navbar({ t }: IProps) {
   const logOut = useCallback(() => {
 
     if (updateUser) {
-      window.analytics.reset();
+      //window.analytics.reset();
       updateUser(null);
     }
 
@@ -79,7 +79,7 @@ function Navbar({ t }: IProps) {
         <NavHashLink className="navbar-brand" to="/#home">
           <img
             className="d-inline-block"
-            src="assets/img/gallery/logo.png"
+            src="/assets/img/gallery/logo.png"
             width={50}
             alt="logo"
           />
@@ -103,8 +103,7 @@ function Navbar({ t }: IProps) {
           <ul className="navbar-nav mx-auto pt-2 pt-lg-0 font-base">
             <li className="nav-item px-2">
               <NavHashLink
-                className="nav-link fw-medium active"
-                aria-current="page"
+                className="nav-link fw-medium"
                 to='/#places'
               >
                 <span className="nav-link-icon text-800 me-1 fas fa-map-marker-alt" />
@@ -162,16 +161,16 @@ function LoggedIn({ t, logOut, user }: ILoggedIn) {
 function LoggedOut({ t }: IProps) {
   return (
     <>
-      <NavHashLink to="/register#register">
+      <Link to="/register">
         <button className="btn btn-voyage-outline order-0" type="button">
           <span className="text-primary">{t('register')}</span>
         </button>
-      </NavHashLink>
-      <NavHashLink to="/login#login">
+      </Link>
+      <Link to="/login">
         <button className="btn btn-voyage-outline order-0" type="button">
           <span className="text-primary">{t('login')}</span>
         </button>
-      </NavHashLink>
+      </Link>
     </>
   )
 }

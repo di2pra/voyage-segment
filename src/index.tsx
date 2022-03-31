@@ -36,7 +36,9 @@ const resources = {
       "Flash Deals": "Flash Deals",
       "Per person": "Per person",
       "priceWithCurrency": "{{val, currency(USD)}}",
-      "Trending": "Trending"
+      "Trending": "Trending",
+      "Adult": "Adult",
+      "Adults": "Adults"
     },
     placeSection: {
       "Popular places": "Popular places",
@@ -113,7 +115,9 @@ const resources = {
       "Flash Deals": "Vente Flash",
       "Per person": "Par personne",
       "priceWithCurrency": "{{val, currency(EUR)}}",
-      "Trending": "En tendance"
+      "Trending": "En tendance",
+      "Adult": "personne",
+      "Adults": "personnes"
     },
     placeSection: {
       "Popular places": "Idées Voyages",

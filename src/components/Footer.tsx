@@ -13,7 +13,7 @@ function Footer({ t } : IProps) {
             <div className="py-7">
               <img
                 className="d-inline-block"
-                src="assets/img/gallery/logo.png"
+                src="/assets/img/gallery/logo.png"
                 width={50}
                 alt="logo"
               />
@@ -60,7 +60,7 @@ function Footer({ t } : IProps) {
                   {" "}
                   <img
                     className="me-3"
-                    src="assets/img/icons/facebook.svg"
+                    src="/assets/img/icons/facebook.svg"
                     alt="..."
                   />
                 </a>
@@ -68,7 +68,7 @@ function Footer({ t } : IProps) {
                   {" "}
                   <img
                     className="me-3"
-                    src="assets/img/icons/twitter.svg"
+                    src="/assets/img/icons/twitter.svg"
                     alt="..."
                   />
                 </a>
@@ -76,7 +76,7 @@ function Footer({ t } : IProps) {
                   {" "}
                   <img
                     className="me-3"
-                    src="assets/img/icons/instagram.svg"
+                    src="/assets/img/icons/instagram.svg"
                     alt="..."
                   />
                 </a>
@@ -97,11 +97,18 @@ function Footer({ t } : IProps) {
                 &nbsp;by&nbsp;
                 <a
                   className="text-light"
+                  href="mailto:prajendirane@twilio.com"
+                  target="_blank"
+                >Pradheep</a>
+                , credits to {" "}
+                <a
+                  className="text-light"
                   href="https://themewagon.com/"
                   target="_blank"
                 >
                   ThemeWagon{" "}
                 </a>
+                for the theme
               </p>
             </div>
           </div>

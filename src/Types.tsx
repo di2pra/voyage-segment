@@ -1,10 +1,11 @@
 export type IFlashDeal = {
+  url: string;
   title: string;
   imgUrl: string;
   duration: string;
   location: string;
-  originalPrice: string;
-  discountedPrice: string;
+  originalPrice: number;
+  discountedPrice: number;
   discountPercentage: string;
   isTrending: boolean;
 }

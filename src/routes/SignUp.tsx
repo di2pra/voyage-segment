@@ -67,9 +67,9 @@ function SignUp({ t }: IProps) {
     if(updateUser) {
 
       window.analytics.track("User Registered", user);
-
       updateUser(user);
       navigate(`/`);
+      
     }
 
     
