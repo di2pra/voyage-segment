@@ -82,7 +82,9 @@ const UserProvider: FC = ({ children }) => {
 
     }
 
-  }, [user])
+  }, [user]);
+
+  console.log(userList);
 
   return (
     <UserContext.Provider value={{
