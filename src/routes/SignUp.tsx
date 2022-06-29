@@ -1,26 +1,22 @@
 import { useCallback, useContext, useEffect, useRef } from 'react';
-import { withTranslation, TFunction } from 'react-i18next';
+import { TFunction, withTranslation } from 'react-i18next';
+import { useNavigate } from "react-router-dom";
 import useForm, { FormSchema, ValidationSchema } from '../hooks/useForm';
 import { UserContext } from '../providers/UserProvider';
 import { IUser } from '../Types';
-import { useNavigate } from "react-router-dom";
 
 interface IProps {
   t: TFunction<"translation", undefined>
 }
 
 const stateSchema: FormSchema = {
-  username: { value: '', errorMessage: '', isInvalid: false },
   firstName: { value: '', errorMessage: '', isInvalid: false },
   lastName: { value: '', errorMessage: '', isInvalid: false },
   email: { value: '', errorMessage: '', isInvalid: false },
   phone: { value: '', errorMessage: '', isInvalid: false }
 };
 
-const validationStateSchema : ValidationSchema = {
-  username: {
-    required: true
-  },
+const validationStateSchema: ValidationSchema = {
   firstName: {
     required: true
   },
@@ -37,7 +33,7 @@ const validationStateSchema : ValidationSchema = {
 
 function SignUp({ t }: IProps) {
 
-  const {updateUser} = useContext(UserContext);
+  const { signUpUser } = useContext(UserContext);
   let navigate = useNavigate();
   const formEl = useRef(null);
 
@@ -45,38 +41,33 @@ function SignUp({ t }: IProps) {
 
   useEffect(() => {
 
-    if(formEl.current) {
+    if (formEl.current) {
       /*window.analytics.trackForm(formEl.current, 'Signed Up', {
         plan: 'Premium',
         revenue: 99.00
       });*/
     }
-    
+
   }, [formEl]);
 
   const processSignUp = useCallback((state) => {
 
-    const user : IUser = {
-      username: state.username.value,
+    const user: IUser = {
       firstName: state.firstName.value,
       lastName: state.lastName.value,
       email: state.email.value,
       phone: state.phone.value
     }
 
-    if(updateUser) {
+    if (signUpUser) {
 
       window.analytics.track("User Registered", user);
-      updateUser(user);
+      signUpUser(user);
       navigate(`/`);
-      
+
     }
 
-    
-
-  }, [updateUser]);
-
-  console.log(state);
+  }, [signUpUser, navigate]);
 
   return (
     <section id="register">
@@ -87,27 +78,6 @@ function SignUp({ t }: IProps) {
           </div>
           <div className="col-8 offset-2">
             <form ref={formEl} className="row g-4" onSubmit={(e) => { handleOnSubmit(e, processSignUp) }}>
-              <div className="col-12">
-                <div className="input-group-icon">
-                  <label
-                    className="form-label visually-hidden"
-                    htmlFor="inputUsername"
-                  >{t('Username')}</label>
-                  <input
-                    className="form-control input-box form-voyage-control"
-                    id="inputUsername"
-                    autoComplete="username"
-                    value={state.username.value}
-                    name="username"
-                    onChange={handleOnChange} 
-                    type="text"
-                    placeholder={t('Username')}
-                  />
-                  <span className="nav-link-icon text-800 fs--1 input-box-icon">
-                    <i className="fas fa-user" />
-                  </span>
-                </div>
-              </div>
               <div className="col-6">
                 <div className="input-group-icon">
                   <label
@@ -120,7 +90,7 @@ function SignUp({ t }: IProps) {
                     autoComplete='given-name'
                     value={state.firstName.value}
                     name="firstName"
-                    onChange={handleOnChange} 
+                    onChange={handleOnChange}
                     type="text"
                     placeholder={t('First Name')}
                   />
@@ -141,7 +111,7 @@ function SignUp({ t }: IProps) {
                     autoComplete='family-name'
                     value={state.lastName.value}
                     name="lastName"
-                    onChange={handleOnChange} 
+                    onChange={handleOnChange}
                     type="text"
                     placeholder={t('Last Name')}
                   />
@@ -198,7 +168,7 @@ function SignUp({ t }: IProps) {
                     autoComplete='email'
                     value={state.email.value}
                     name="email"
-                    onChange={handleOnChange} 
+                    onChange={handleOnChange}
                     type="email"
                     placeholder={t('Email')}
                   />
@@ -237,7 +207,7 @@ function SignUp({ t }: IProps) {
                     autoComplete='tel'
                     value={state.phone.value}
                     name="phone"
-                    onChange={handleOnChange} 
+                    onChange={handleOnChange}
                     type="tel"
                     placeholder={t('Phone Number')}
                   />

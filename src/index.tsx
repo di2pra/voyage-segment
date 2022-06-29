@@ -1,9 +1,8 @@
-import React from 'react';
+import i18n from "i18next";
 import ReactDOM from 'react-dom';
+import { initReactI18next } from "react-i18next";
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
 import UserProvider from './providers/UserProvider';
 
 const resources = {
@@ -172,7 +171,7 @@ i18n
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     resources,
-    lng: "fr", // if you're using a language detector, do not define the lng option
+    lng: "en", // if you're using a language detector, do not define the lng option
     fallbackLng: "en",
     interpolation: {
       escapeValue: false // react already safes from xss
@@ -180,12 +179,10 @@ i18n
   });
 
 ReactDOM.render(
-  <React.StrictMode>
-    <UserProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </UserProvider>
-  </React.StrictMode>,
+  <UserProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </UserProvider>,
   document.getElementById('root')
 );

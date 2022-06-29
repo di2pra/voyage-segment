@@ -1,10 +1,10 @@
-import { withTranslation, TFunction } from 'react-i18next';
+import { TFunction, withTranslation } from 'react-i18next';
 
-interface IProps  {
+interface IProps {
   t: TFunction<"translation", undefined>
 }
 
-function Footer({ t } : IProps) {
+function Footer({ t }: IProps) {
   return (
     <section className="py-0 overflow-hidden">
       <div className="container">
@@ -98,12 +98,14 @@ function Footer({ t } : IProps) {
                 <a
                   className="text-light"
                   href="mailto:prajendirane@twilio.com"
+                  rel="noreferrer"
                   target="_blank"
                 >Pradheep</a>
                 , credits to {" "}
                 <a
                   className="text-light"
                   href="https://themewagon.com/"
+                  rel="noreferrer"
                   target="_blank"
                 >
                   ThemeWagon{" "}

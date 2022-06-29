@@ -1,17 +1,12 @@
-import { withTranslation, TFunction } from 'react-i18next';
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { CarrousselItems, FlashDeals } from "../../Data";
+import { TFunction, withTranslation } from 'react-i18next';
+import { Link } from "react-router-dom";
+import { FlashDeals } from "../../Data";
 
 interface IProps {
   t: TFunction<"translation", undefined>
 }
 
 function FlashDealsSection({ t }: IProps) {
-
-  let navigate = useNavigate();
-
-  const [selectedCarousel, setSelectedCarousel] = useState<number>(0);
 
   return (
     <section id="flashDeals">
@@ -27,7 +22,7 @@ function FlashDealsSection({ t }: IProps) {
                   return (
 
                     <div key={cardIndex} className="col-md-4 mb-3 mb-md-0 h-100">
-                      <Link style={{'textDecoration': 'none'}} to={`flash-deals/${card.url}`}>
+                      <Link style={{ 'textDecoration': 'none' }} to={`flash-deals/${card.url}`}>
                         <div className="card card-span h-100 text-white">
                           <img
                             className="img-fluid h-100"

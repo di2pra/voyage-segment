@@ -1,4 +1,3 @@
-import Navbar from "../components/Navbar";
 import FlashDealsSection from "../components/sections/FlashDealsSection";
 import FlightSection from "../components/sections/FlightSection";
 import HotelSection from "../components/sections/HotelSection";
@@ -141,7 +140,7 @@ export default function Home() {
                     </ol>
                   </div>
                   <div className="col-8 col-sm-6 position-relative z-index-2 text-end">
-                    <a className="btn btn-lg text-secondary" href="#" role="button">
+                    <a className="btn btn-lg text-secondary" href="/" role="button">
                       Read More
                       <svg
                         className="bi bi-arrow-right ms-2"
@@ -196,7 +195,6 @@ export default function Home() {
                     </h1>
                   </div>
                 </div>
-                <a className="stretched-link" href="#!" />
               </div>
             </div>
             <div className="col-sm-6 col-lg-4 order-2 order-lg-0 gy-2 gy-lg-0">
@@ -228,7 +226,6 @@ export default function Home() {
                     </h1>
                   </div>
                 </div>
-                <a className="stretched-link" href="#!" />
               </div>
             </div>
             <div className="col-12 col-lg-4">
@@ -282,7 +279,6 @@ export default function Home() {
                     </h1>
                   </div>
                 </div>
-                <a className="stretched-link" href="#!" />
               </div>
             </div>
             <div className="col-sm-6 col-lg-4 gy-2">
@@ -314,7 +310,6 @@ export default function Home() {
                     </h1>
                   </div>
                 </div>
-                <a className="stretched-link" href="#!" />
               </div>
             </div>
             <div className="col-sm-6 col-lg-4 gy-2">
@@ -346,7 +341,6 @@ export default function Home() {
                     </h1>
                   </div>
                 </div>
-                <a className="stretched-link" href="#!" />
               </div>
             </div>
             <div className="col-12 col-lg-8 gy-2 order-3 order-lg-0">
@@ -413,7 +407,6 @@ export default function Home() {
                     </h1>
                   </div>
                 </div>
-                <a className="stretched-link" href="#!" />
               </div>
             </div>
           </div>
@@ -560,7 +553,7 @@ export default function Home() {
                     </ol>
                   </div>
                   <div className="col-8 col-sm-6 position-relative z-index-2 text-end">
-                    <a className="btn btn-lg text-secondary" href="#" role="button">
+                    <a className="btn btn-lg text-secondary" href="/" role="button">
                       Read More
                       <svg
                         className="bi bi-arrow-right ms-2"
@@ -608,7 +601,7 @@ export default function Home() {
             <div className="col-lg-6 text-center">
               <h1 className="fs-6 pe-xxl-10">Get the app</h1>
               <div className="mt-4 pe-xxl-10">
-                <a href="https://play.google.com/store/apps" target="_blank">
+                <a href="https://play.google.com/store/apps" rel="noreferrer" target="_blank">
                   <img
                     className="me-3"
                     src="assets/img/gallery/google-play.png"
@@ -616,7 +609,7 @@ export default function Home() {
                     alt="..."
                   />
                 </a>
-                <a href="https://www.apple.com/app-store/" target="_blank">
+                <a href="https://www.apple.com/app-store/" rel="noreferrer" target="_blank">
                   {" "}
                   <img
                     src="assets/img/gallery/app-store.png"

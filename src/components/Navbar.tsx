@@ -1,8 +1,8 @@
-import { useCallback, useContext, useEffect, useRef } from "react"
+import { useCallback, useContext, useEffect, useRef } from "react";
+import { TFunction, withTranslation } from 'react-i18next';
 import { Link } from "react-router-dom";
-import { hasClass, hexToRgb } from "../Helpers";
 import { NavHashLink } from 'react-router-hash-link';
-import { withTranslation, TFunction } from 'react-i18next';
+import { hasClass, hexToRgb } from "../Helpers";
 import { UserContext } from "../providers/UserProvider";
 import { IUser } from "../Types";
 
@@ -21,7 +21,6 @@ function Navbar({ t }: IProps) {
     if (navbar.current) {
 
       const color = '#fff';
-      const bgClassName = `bg-white`;
 
       const shadowName = 'shadow-transition'
 
@@ -43,7 +42,7 @@ function Navbar({ t }: IProps) {
       (alpha > 0 || hasClass(navbarCollapse, 'show')) ? navbar.current.classList.add(shadowName) : navbar.current.classList.remove(shadowName);
     }
 
-  }, [navbar.current]);
+  }, []);
 
   useEffect(() => {
     scrollEventListener()
@@ -149,7 +148,7 @@ interface ILoggedIn extends IProps {
 function LoggedIn({ t, logOut, user }: ILoggedIn) {
   return (
     <>
-      <button className="btn order-1 order-lg-0 me-2" type="button" style={{'color': '#FE7A15'}}>{user.firstName} {user.lastName}</button>
+      <button className="btn order-1 order-lg-0 me-2" type="button" style={{ 'color': '#FE7A15' }}>{user.firstName} {user.lastName}</button>
       <button className="btn btn-voyage-outline order-0" type="button" onClick={() => { logOut() }}>
         <span className="text-primary">{t('Log out')}</span>
       </button>

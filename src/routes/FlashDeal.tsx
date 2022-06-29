@@ -1,8 +1,8 @@
-import { withTranslation, TFunction } from 'react-i18next';
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import { TFunction, withTranslation } from 'react-i18next';
 import { useParams } from "react-router-dom";
-import { IFlashDeal } from "../Types"
 import { FlashDeals } from '../Data';
+import { IFlashDeal } from "../Types";
 
 interface IProps {
   t: TFunction<"translation", undefined>
@@ -29,9 +29,9 @@ function FlashDeal({ t }: IProps) {
 
     }
 
-    
 
-  }, []);
+
+  }, [nameUrl]);
 
   if (selectedDeal === null) {
     return <section>
@@ -44,7 +44,7 @@ function FlashDeal({ t }: IProps) {
       <div className="container">
         <div className="row">
           <div className="col-5 text-center">
-            <img src={selectedDeal.imgUrl} />
+            <img src={selectedDeal.imgUrl} alt={selectedDeal.title} />
           </div>
           <div className="col-7">
             <h4 className="fw-bold text-1000 mb-2">{selectedDeal.title}</h4>
@@ -93,7 +93,7 @@ function FlashDeal({ t }: IProps) {
                 </div>
               </div>
               <div className="col-6 d-grid">
-                <button className="btn btn-secondary" type="button" onClick={() => {}}>Book</button>
+                <button className="btn btn-secondary" type="button">Book</button>
               </div>
             </div>
           </div>

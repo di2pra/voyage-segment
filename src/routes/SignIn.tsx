@@ -1,11 +1,11 @@
-import { withTranslation, TFunction } from 'react-i18next';
+import { TFunction, withTranslation } from 'react-i18next';
 
-interface IProps  {
+interface IProps {
   t: TFunction<"translation", undefined>
 }
 
 
-function SignIn({ t } : IProps) {
+function SignIn({ t }: IProps) {
   return (
     <section id="login">
       <div className="container">
