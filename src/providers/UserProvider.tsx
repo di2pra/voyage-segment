@@ -55,7 +55,7 @@ const UserProvider: FC = ({ children }) => {
 
     newValue = { ...newValue, [user.email]: user }
 
-    Cookies.set('userList', JSON.stringify(newValue));
+    Cookies.set('userList', JSON.stringify(newValue), { expires: 7 });
 
     setUserList(newValue);
 
@@ -83,8 +83,6 @@ const UserProvider: FC = ({ children }) => {
     }
 
   }, [user]);
-
-  console.log(userList);
 
   return (
     <UserContext.Provider value={{

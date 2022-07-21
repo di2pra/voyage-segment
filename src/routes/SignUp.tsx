@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useRef } from 'react';
+import { useCallback, useContext, useRef } from 'react';
 import { TFunction, withTranslation } from 'react-i18next';
 import { useNavigate } from "react-router-dom";
 import useForm, { FormSchema, ValidationSchema } from '../hooks/useForm';
@@ -38,17 +38,6 @@ function SignUp({ t }: IProps) {
   const formEl = useRef(null);
 
   const { state, handleOnChange, handleOnSubmit } = useForm(stateSchema, validationStateSchema);
-
-  useEffect(() => {
-
-    if (formEl.current) {
-      /*window.analytics.trackForm(formEl.current, 'Signed Up', {
-        plan: 'Premium',
-        revenue: 99.00
-      });*/
-    }
-
-  }, [formEl]);
 
   const processSignUp = useCallback((state) => {
 
